@@ -9,6 +9,13 @@ contract VendasETH {
         address comprador;
     }
 
+    struct Produto {
+        uint id;
+        string nome;
+        uint preco;
+    }
+
+    Produto[] private produtos;
     Venda[] private vendas;
     address public owner;
     mapping(address => bool) public autorizados;
@@ -18,12 +25,18 @@ contract VendasETH {
     }
 
     modifier onlyOwner() {
-        require(msg.sender == owner, "Only the owner can execute this function");
+        require(
+            msg.sender == owner,
+            "Only the owner can execute this function"
+        );
         _;
     }
 
     modifier onlyAuthorized() {
-        require(autorizados[msg.sender], "Only authorized accounts can execute this function");
+        require(
+            autorizados[msg.sender],
+            "Only authorized accounts can execute this function"
+        );
         _;
     }
 
@@ -35,11 +48,19 @@ contract VendasETH {
         autorizados[conta] = false;
     }
 
-    function armazenaVenda(uint idProduto, uint quantidade, uint preco) public onlyAuthorized {
+    function armazenaVenda(
+        uint idProduto,
+        uint quantidade,
+        uint preco
+    ) public onlyAuthorized {
         vendas.push(Venda(idProduto, quantidade, preco, msg.sender));
     }
 
     function recuperaTotalVendas() public view returns (Venda[] memory) {
         return vendas;
+    }
+
+    function getProdutos() public view returns (Produto[] memory) {
+        return produtos;
     }
 }
