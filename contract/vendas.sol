@@ -18,12 +18,12 @@ contract VendasETH {
     }
 
     modifier onlyOwner() {
-        require(msg.sender == owner, "Apenas o owner pode executar essa função");
+        require(msg.sender == owner, "Only the owner can execute this function");
         _;
     }
 
     modifier onlyAuthorized() {
-        require(autorizados[msg.sender], "Apenas contas autorizadas podem executar essa função");
+        require(autorizados[msg.sender], "Only authorized accounts can execute this function");
         _;
     }
 
