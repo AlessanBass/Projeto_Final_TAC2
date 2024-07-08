@@ -19,7 +19,8 @@ export default function Venda() {
     const handleVenda = async (event: { preventDefault: () => void; }) => {
         event.preventDefault();
         const accounts = await web3.eth.getAccounts();
-        await contract.methods.armazenaVenda(idProduto, quantidade, preco).send({ from: accounts[0] });
+        console.log(accounts);
+        await contract.methods.armazenaVenda(idProduto, quantidade, preco).send({ from: '0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2'});
     };
 
     return(

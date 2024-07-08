@@ -1,11 +1,13 @@
 // src/vendasETH.js
-import web3 from 'web3';
+import Web3 from 'web3';
+const web3 = new Web3('http://localhost:8545'); // ou o endereço do seu provedor
+
 const address = '0xd9145CCE52D386f254917e481eB44e9943F39138';
 const abi = [
     {
         inputs: [],
-        stateMutability: nonpayable,
-        type: constructor
+        stateMutability: "nonpayable",
+        type: "constructor"
     },
     {
         inputs: [
